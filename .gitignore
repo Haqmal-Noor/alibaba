@@ -1,0 +1,69 @@
+# ===================
+# General
+# ===================
+node_modules/
+.env
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+build/
+coverage/
+
+# ===================
+# OS Generated
+# ===================
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# ===================
+# Frontend
+# ===================
+frontend/node_modules/
+frontend/.env
+frontend/build/
+frontend/dist/
+frontend/.next/
+frontend/.nuxt/
+frontend/.cache/
+frontend/.turbo/
+
+# Optional: lock files (if using specific package managers)
+frontend/package-lock.json
+frontend/yarn.lock
+frontend/pnpm-lock.yaml
+
+# ===================
+# Backend
+# ===================
+backend/node_modules/
+backend/.env
+backend/dist/
+backend/tmp/
+backend/logs/
+backend/.cache/
+backend/.coverage/
+
+# Optional: lock files
+backend/package-lock.json
+backend/yarn.lock
+backend/pnpm-lock.yaml
+
+# ===================
+# IDEs / Editors
+# ===================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.bak
+
+# ===================
+# Git
+# ===================
+.git/
