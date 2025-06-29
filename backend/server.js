@@ -14,12 +14,13 @@ import redirectRouter from "./routes/redirect.js";
 import authRouter from "./routes/auth.js";
 import analyticsRouter from "./routes/analytics.js";
 
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Load environment variables from backend/.env explicitly
 dotenv.config({ path: path.resolve(__dirname, "./.env") });
+
 // Connect to MongoDB
 connectDB();
 
@@ -57,12 +58,13 @@ app.use("/api/redirect", redirectRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/analytics", analyticsRouter);
 
-// Serve frontend static files from /dist (Vite build output)
-app.use(express.static(path.resolve(__dirname, "..", "dist")));
+// Serve frontend static files from frontend/dist (Vite build output)
+const frontendPath = path.resolve(__dirname, "../frontend/dist");
+app.use(express.static(frontendPath));
 
 // SPA fallback to index.html for all other routes not handled by API
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "..", "dist", "index.html"));
+  res.sendFile(path.join(frontendPath, "index.html"));
 });
 
 // Health check
@@ -85,7 +87,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// 404 handler (if somehow route reaches here after static and API handling)
+// 404 handler (in case route is not found after all above)
 app.use("*", (req, res) => {
   res.status(404).json({
     success: false,
