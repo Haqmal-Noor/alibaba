@@ -24,9 +24,6 @@ dotenv.config({ path: path.resolve(__dirname, "./.env") });
 // Connect to MongoDB
 connectDB();
 
-// Security middleware
-import helmet from "helmet";
-
 app.use(
   helmet({
     contentSecurityPolicy: {
