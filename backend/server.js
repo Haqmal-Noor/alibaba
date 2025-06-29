@@ -25,7 +25,21 @@ dotenv.config({ path: path.resolve(__dirname, "./.env") });
 connectDB();
 
 // Security middleware
-app.use(helmet());
+import helmet from "helmet";
+
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        imgSrc: ["'self'", "data:", "https:", "http:"], // Allow external images
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https:"],
+        connectSrc: ["'self'", "https:"],
+      },
+    },
+  })
+);
 app.use(
   cors({
     origin: process.env.FRONTEND_URL || "http://localhost:5173",
